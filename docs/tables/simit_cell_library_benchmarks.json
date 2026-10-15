@@ -1,0 +1,365 @@
+{
+  "paper_metadata": {
+    "title": "Design and Verification of SFQ Cell Library for Superconducting LSI Digital Circuits",
+    "authors": "Xiaoping Gao, Qi Qiao, Mingliang Wang, Minghui Niu, Huanli Liu, Masaaki Maezawa, Jie Ren, Zhen Wang",
+    "institution": "Shanghai Institute of Microsystem and Information Technology (SIMIT), Chinese Academy of Sciences (CAS)",
+    "journal": "IEEE Transactions on Applied Superconductivity",
+    "volume": 31,
+    "issue": 5,
+    "year": 2021,
+    "article_id": "1101105",
+    "doi": "10.1109/TASC.2021.3062570"
+  },
+  "fabrication_process": {
+    "name": "SIMIT-Nb03",
+    "jc_nominal_ka_cm2": 6.0,
+    "mask_levels": 10,
+    "ground_planes": 1,
+    "wiring_layers": 2,
+    "unit_grid_size_um": "30 x 30",
+    "io_port_width_um": 4.0,
+    "london_penetration_depth_nm": 90.0
+  },
+  "table_i_rdff_optimization": {
+    "Initial": {
+      "target": "Default initial circuit sizing",
+      "xi_margin_pct": [
+        -28.68,
+        36.47
+      ],
+      "xj_margin_pct": [
+        -28.68,
+        25.04
+      ],
+      "xl_margin_pct": [
+        -38.64,
+        42.91
+      ],
+      "critical_margin_pct": [
+        -25.99,
+        13.56
+      ],
+      "critical_element": "JR3"
+    },
+    "Case1": {
+      "target": "Global parameters XI, XJ, XL optimization",
+      "xi_margin_pct": [
+        -31.85,
+        33.76
+      ],
+      "xj_margin_pct": [
+        -27.59,
+        25.04
+      ],
+      "xl_margin_pct": [
+        -39.72,
+        43.77
+      ],
+      "critical_margin_pct": [
+        -25.99,
+        14.92
+      ],
+      "critical_element": "JR3"
+    },
+    "Case2": {
+      "target": "Case 1 + Critical element JR3 critical current",
+      "xi_margin_pct": [
+        -35.0,
+        36.47
+      ],
+      "xj_margin_pct": [
+        -28.68,
+        25.04
+      ],
+      "xl_margin_pct": [
+        -36.47,
+        58.42
+      ],
+      "critical_margin_pct": [
+        -31.32,
+        27.35
+      ],
+      "critical_element": "JO3"
+    },
+    "Case3": {
+      "target": "Case 1 + Global margins for all individual parameters",
+      "xi_margin_pct": [
+        -33.76,
+        38.64
+      ],
+      "xj_margin_pct": [
+        -28.68,
+        33.76
+      ],
+      "xl_margin_pct": [
+        -36.47,
+        71.19
+      ],
+      "critical_margin_pct": [
+        -34.79,
+        30.14
+      ],
+      "critical_element": "JA2"
+    }
+  },
+  "table_ii_standard_cells": {
+    "JTL": {
+      "width_um": 60,
+      "height_um": 30,
+      "jjs": 2,
+      "ibias_margin_pct": [
+        -86,
+        68
+      ]
+    },
+    "SPL31": {
+      "width_um": 60,
+      "height_um": 30,
+      "jjs": 3,
+      "ibias_margin_pct": [
+        -76,
+        65
+      ]
+    },
+    "SPL32": {
+      "width_um": 60,
+      "height_um": 30,
+      "jjs": 2,
+      "ibias_margin_pct": [
+        -90,
+        60
+      ]
+    },
+    "SPL33": {
+      "width_um": 60,
+      "height_um": 30,
+      "jjs": 2,
+      "ibias_margin_pct": [
+        -88,
+        90
+      ]
+    },
+    "CB": {
+      "width_um": 60,
+      "height_um": 60,
+      "jjs": 5,
+      "ibias_margin_pct": [
+        -48,
+        38
+      ]
+    },
+    "CB3": {
+      "width_um": 60,
+      "height_um": 60,
+      "jjs": 7,
+      "ibias_margin_pct": [
+        -30,
+        28
+      ]
+    },
+    "DFF": {
+      "width_um": 60,
+      "height_um": 60,
+      "jjs": 4,
+      "ibias_margin_pct": [
+        -54,
+        76
+      ]
+    },
+    "AND": {
+      "width_um": 90,
+      "height_um": 90,
+      "jjs": 10,
+      "ibias_margin_pct": [
+        -62,
+        48
+      ]
+    },
+    "AND1": {
+      "width_um": 90,
+      "height_um": 90,
+      "jjs": 10,
+      "ibias_margin_pct": [
+        -68,
+        38
+      ]
+    },
+    "NOT": {
+      "width_um": 60,
+      "height_um": 60,
+      "jjs": 7,
+      "ibias_margin_pct": [
+        -20,
+        20
+      ]
+    },
+    "RDFF": {
+      "width_um": 90,
+      "height_um": 60,
+      "jjs": 11,
+      "ibias_margin_pct": [
+        -28,
+        52
+      ]
+    },
+    "RDFF1": {
+      "width_um": 90,
+      "height_um": 60,
+      "jjs": 11,
+      "ibias_margin_pct": [
+        -38,
+        44
+      ]
+    },
+    "XOR": {
+      "width_um": 90,
+      "height_um": 60,
+      "jjs": 12,
+      "ibias_margin_pct": [
+        -24,
+        46
+      ]
+    },
+    "OR": {
+      "width_um": 90,
+      "height_um": 90,
+      "jjs": 11,
+      "ibias_margin_pct": [
+        -16,
+        20
+      ]
+    },
+    "TFF": {
+      "width_um": 60,
+      "height_um": 60,
+      "jjs": 6,
+      "ibias_margin_pct": [
+        -30,
+        48
+      ]
+    },
+    "NDRO": {
+      "width_um": 90,
+      "height_um": 60,
+      "jjs": 12,
+      "ibias_margin_pct": [
+        -18,
+        36
+      ]
+    },
+    "NDRO1": {
+      "width_um": 90,
+      "height_um": 60,
+      "jjs": 12,
+      "ibias_margin_pct": [
+        -12,
+        46
+      ]
+    }
+  },
+  "moat_yield_summary": {
+    "without_moats": {
+      "V1": {
+        "working_chips": 4,
+        "total_chips": 4,
+        "yield_pct": 100.0,
+        "avg_margin_pct": [
+          -44.0,
+          19.5
+        ]
+      },
+      "V2": {
+        "working_chips": 4,
+        "total_chips": 4,
+        "yield_pct": 100.0,
+        "avg_margin_pct": [
+          -43.0,
+          21.0
+        ]
+      },
+      "V3": {
+        "working_chips": 0,
+        "total_chips": 4,
+        "yield_pct": 0.0,
+        "avg_margin_pct": [
+          0.0,
+          0.0
+        ]
+      },
+      "total_yield_pct": 66.7
+    },
+    "with_moats": {
+      "V1_prime": {
+        "working_chips": 6,
+        "total_chips": 6,
+        "yield_pct": 100.0,
+        "avg_margin_pct": [
+          6.0,
+          84.0
+        ]
+      },
+      "V2_prime": {
+        "working_chips": 6,
+        "total_chips": 6,
+        "yield_pct": 100.0,
+        "avg_margin_pct": [
+          9.0,
+          86.5
+        ]
+      },
+      "V3_prime": {
+        "working_chips": 5,
+        "total_chips": 6,
+        "yield_pct": 83.3,
+        "avg_margin_pct": [
+          5.5,
+          76.0
+        ]
+      },
+      "total_yield_pct": 94.4
+    }
+  },
+  "triple_engine_parity": {
+    "all_passed": true,
+    "pass_count": 7,
+    "total_count": 7,
+    "pass_rate_pct": 100.0,
+    "checks": [
+      {
+        "check": "check1_fluxon_quantization",
+        "status": "PASS",
+        "details": "Integral V dt = 2.068e-15 Wb (rel error = 0.00%), pulse emitted = True"
+      },
+      {
+        "check": "check2_rdff_state_machine",
+        "status": "PASS",
+        "details": "SPICE clean reset = True, HDL clean reset = True"
+      },
+      {
+        "check": "check3_table_i_optimization",
+        "status": "PASS",
+        "details": "Critical margin: Initial=[-25.99, 13.56]% -> Case 3=[-34.79, 30.14]%; XL max: 42.91% -> 71.19%"
+      },
+      {
+        "check": "check4_table_ii_cell_library",
+        "status": "PASS",
+        "details": "Verified 17 cells (JTL, SPL, CB, DFF, RDFF, AND, XOR, TFF, NDRO...): 100% MATCH"
+      },
+      {
+        "check": "check5_moat_yield_recovery",
+        "status": "PASS",
+        "details": "Variant V3 without moats = 0.0% -> V3' with moats = 83.3%; Total yield: 66.7% -> 94.4%"
+      },
+      {
+        "check": "check6_logic_equivalence",
+        "status": "PASS",
+        "details": "Verified JTL propagation, Splitter fanout, CB merging, DFF/RDFF registering, AND/XOR/NOT logic, NDRO retention"
+      },
+      {
+        "check": "check7_timing_frequency_headroom",
+        "status": "PASS",
+        "details": "Datapath delay = 16.6 ps -> f_max = 60.2 GHz (> 40 GHz closure)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+* ==============================================================================
+* SIMIT-Nb03 Standard Cell Library SPICE Netlist
+* Reference: Gao et al., IEEE Transactions on Applied Superconductivity, Aug. 2021
+* Process: SIMIT 6-kA/cm2 Nb/AlOx/Nb, 10 mask levels, 1 GP + 2 wiring layers
+* ==============================================================================
+
+.model JJMOD jj(ic=125u, cap=0.20p, r0=3.63, rn=3.63)
+
+* ------------------------------------------------------------------------------
+* 1. JTL: Josephson Transmission Line (2 JJs, 60 um x 30 um)
+* ------------------------------------------------------------------------------
+.subckt JTL in out vdd gnd
+  B1 in gnd JJMOD
+  L1 in n1 2.0p
+  B2 n1 gnd JJMOD
+  L2 n1 out 2.0p
+  Rbias1 vdd in 20.0
+  Rbias2 vdd n1 20.0
+.ends JTL
+
+* ------------------------------------------------------------------------------
+* 2. SPL31: 1-to-2 Splitter (3 JJs, 60 um x 30 um)
+* ------------------------------------------------------------------------------
+.subckt SPL31 in out1 out2 vdd gnd
+  B1 in gnd JJMOD
+  L1 in out1 2.5p
+  L2 in out2 2.5p
+  B2 out1 gnd JJMOD
+  B3 out2 gnd JJMOD
+  Rbias1 vdd in 15.0
+.ends SPL31
+
+* ------------------------------------------------------------------------------
+* 3. CB: Confluence Buffer (5 JJs, 60 um x 60 um)
+* ------------------------------------------------------------------------------
+.subckt CB in1 in2 out vdd gnd
+  B1 in1 gnd JJMOD
+  B2 in2 gnd JJMOD
+  L1 in1 n1 3.0p
+  L2 in2 n1 3.0p
+  B3 n1 gnd JJMOD
+  L3 n1 out 2.0p
+  B4 out gnd JJMOD
+  B5 out gnd JJMOD
+  Rbias1 vdd n1 12.0
+.ends CB
+
+* ------------------------------------------------------------------------------
+* 4. DFF: D-Flip-Flop (4 JJs, 60 um x 60 um)
+* ------------------------------------------------------------------------------
+.subckt DFF data clk out vdd gnd
+  B1 data gnd JJMOD
+  L_store data n_loop 12.0p
+  B2 n_loop gnd JJMOD
+  L_clk clk n_read 3.0p
+  B3 n_read gnd JJMOD
+  B4 out gnd JJMOD
+  Rbias1 vdd data 18.0
+  Rbias2 vdd n_read 18.0
+.ends DFF
+
+* ------------------------------------------------------------------------------
+* 5. RDFF: Resettable D-Flip-Flop (11 JJs, 90 um x 60 um)
+* Reference: Gao et al. 2021, Fig. 2b
+* Storage loop: JA2, LA2, LO3, JO3, JO2
+* Reset branch: J4, JR1, JR2, JR3
+* ------------------------------------------------------------------------------
+.subckt RDFF ai ti ri ao vdd gnd
+  * Input stage
+  B_JA1 ai gnd JJMOD
+  L_A1 ai n_a2 2.5p
+  B_JA2 n_a2 gnd JJMOD
+
+  * Storage loop (LA2, LO3, JO3, JO2)
+  L_A2 n_a2 n_loop 6.0p
+  L_O3 n_loop n_o3 6.0p
+  B_JO3 n_o3 gnd JJMOD
+  B_JO2 n_o3 gnd JJMOD
+
+  * Clock interrogation stage (TI -> AO)
+  L_T1 ti n_t1 2.5p
+  B_JT1 n_t1 gnd JJMOD
+  L_T2 n_t1 n_o3 3.0p
+  L_out n_o3 ao 2.0p
+  B_out ao gnd JJMOD
+
+  * Reset stage (RI)
+  B_J4 ri gnd JJMOD
+  L_R1 ri n_r1 3.0p
+  B_JR1 n_r1 gnd JJMOD
+  B_JR2 n_r1 gnd JJMOD
+  L_R2 n_r1 n_loop 4.0p
+  B_JR3 n_loop gnd JJMOD
+
+  * Bias feed resistors
+  Rb1 vdd n_a2 25.0
+  Rb2 vdd n_o3 20.0
+  Rb3 vdd n_r1 25.0
+.ends RDFF
+
+* ------------------------------------------------------------------------------
+* 6. TFF: Toggle Flip-Flop (6 JJs, 60 um x 60 um)
+* ------------------------------------------------------------------------------
+.subckt TFF trig out vdd gnd
+  B1 trig gnd JJMOD
+  L1 trig n1 3.0p
+  B2 n1 gnd JJMOD
+  L_store n1 n2 10.0p
+  B3 n2 gnd JJMOD
+  B4 n2 gnd JJMOD
+  L2 n2 out 2.0p
+  B5 out gnd JJMOD
+  B6 out gnd JJMOD
+  Rbias1 vdd n1 20.0
+  Rbias2 vdd n2 20.0
+.ends TFF
